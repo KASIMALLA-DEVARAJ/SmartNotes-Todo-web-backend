@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport')
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const {connectDB } = require('./config/database')
 
 const bodyParser = require("body-parser");
 

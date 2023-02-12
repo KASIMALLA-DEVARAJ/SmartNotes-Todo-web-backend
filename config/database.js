@@ -12,7 +12,7 @@ const connectDB = async () => {
     }
   }
 
-mongoose.connect(process.env.APP_DATABASE).then(db => console.log("database connected")).catch(err => console.log("Databse connection failed"));
+// mongoose.connect(process.env.APP_DATABASE).then(db => console.log("database connected")).catch(err => console.log("Databse connection failed"));
 const userSchema = mongoose.Schema({
     username : String,
     email : String,
@@ -70,6 +70,7 @@ const NoteModel = mongoose.model("Note",noteSchema);
 const TodoModel = mongoose.model("Todo",todoSchema);
 
 module.exports = {UserModel,NoteModel,TodoModel,connectDB};
+
 // {
 //     "username" : "Revanth",
 //     "email" : "revanth@gamail.com",
