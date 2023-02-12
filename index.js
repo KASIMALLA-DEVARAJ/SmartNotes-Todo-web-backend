@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(passport.initialize());
 app.use(cors({
-    origin:["http://localhost:3000","https://smartnotes.onrender.com"],
+    origin:["http://localhost:3000",process.env.APP_FRONTEND_URL],
 })
 )
 
@@ -336,4 +336,9 @@ setInterval(function(){
     })
 },1000)
 
-app.listen(PORT,() => console.log(`Listening at port ${PORT}`))
+
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Listening at port ${PORT}`);
+    })
+})

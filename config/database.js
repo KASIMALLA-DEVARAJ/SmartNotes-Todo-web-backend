@@ -1,6 +1,17 @@
 const mongoose = require('mongoose');
 require('dotenv/config');
 // mongoose.connect('mongodb://localhost:27017/smartnotes');
+
+const connectDB = async () => {
+    try {
+      const conn = await mongoose.connect(process.env.APP_DATABASE);
+      console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+      console.log(error);
+      process.exit(1);
+    }
+  }
+
 mongoose.connect(process.env.APP_DATABASE).then(db => console.log("database connected")).catch(err => console.log("Databse connection failed"));
 const userSchema = mongoose.Schema({
     username : String,
@@ -58,7 +69,7 @@ const UserModel = mongoose.model("User",userSchema);
 const NoteModel = mongoose.model("Note",noteSchema);
 const TodoModel = mongoose.model("Todo",todoSchema);
 
-module.exports = {UserModel,NoteModel,TodoModel};
+module.exports = {UserModel,NoteModel,TodoModel,connectDB};
 // {
 //     "username" : "Revanth",
 //     "email" : "revanth@gamail.com",
