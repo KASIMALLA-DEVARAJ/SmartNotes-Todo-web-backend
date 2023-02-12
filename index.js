@@ -29,6 +29,10 @@ app.use(cors({
 })
 )
 
+
+app.get('/',(req,res)=> {
+    res.send("hello")
+})
 app.post('/signup',(req,res) => {
     UserModel.findOne({email:req.body.email}).then(exists => {
         if(exists){
